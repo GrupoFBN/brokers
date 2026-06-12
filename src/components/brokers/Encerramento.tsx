@@ -37,7 +37,7 @@ export function Encerramento() {
           size="lg"
           className="mt-10 bg-background text-primary hover:bg-background/90"
         >
-          <a href="#contato">Quero ser broker FBN</a>
+          <a href="#contato">Quero me tornar um broker FBN</a>
         </Button>
 
         <p className="mt-12 text-xs text-primary-foreground/60">
