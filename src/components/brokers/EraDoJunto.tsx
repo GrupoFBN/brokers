@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export function EraDoJunto() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-primary-dark py-24 text-primary-foreground sm:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-primary-dark py-20 text-primary-foreground sm:py-28 lg:py-32">
       <div className="pointer-events-none absolute inset-0 opacity-25">
         <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -16,7 +16,7 @@ export function EraDoJunto() {
         </svg>
       </div>
       {/* Animated connecting lines */}
-      <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-40" viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden>
+      <svg className="pointer-events-none absolute inset-0 hidden h-full w-full opacity-40 sm:block" viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden>
         <motion.path
           d="M 50 200 Q 200 80 400 200 T 750 200"
           stroke="url(#ejg)"
@@ -58,10 +58,10 @@ export function EraDoJunto() {
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/70">
             Posicionamento
           </span>
-          <h2 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
+          <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-5xl md:text-6xl">
             Estamos na era do junto
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-primary-foreground/85">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-primary-foreground/85 sm:mt-6 sm:text-lg">
             O crescimento mais consistente acontece quando empresas unem forças, compartilham
             conhecimento e constroem relações de valor.
           </p>

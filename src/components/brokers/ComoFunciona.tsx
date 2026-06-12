@@ -26,11 +26,11 @@ const passos = [
 
 export function ComoFunciona() {
   return (
-    <section id="como-funciona" className="bg-surface-muted py-20 sm:py-28">
+    <section id="como-funciona" className="bg-surface-muted py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow="Jornada" title="Como funciona a parceria" />
 
-        <div className="relative mt-16 grid gap-6 lg:grid-cols-4">
+        <div className="relative mt-12 grid gap-5 sm:mt-16 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           <svg
             className="pointer-events-none absolute left-0 right-0 top-7 hidden h-px w-full lg:block"
             viewBox="0 0 1000 2"
