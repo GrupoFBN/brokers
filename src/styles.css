@@ -122,12 +122,19 @@
   * {
     border-color: var(--color-border);
   }
+  html, body {
+    overflow-x: hidden;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11", "cv02";
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (max-width: 640px) {
+    .animate-spin-slow { animation: none !important; }
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
