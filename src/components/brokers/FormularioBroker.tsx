@@ -70,7 +70,7 @@ export function FormularioBroker() {
   const onInvalid = () => setStatus("error");
 
   return (
-    <section id="contato" className="py-20 sm:py-28">
+    <section id="contato" className="py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Vamos conversar"
@@ -178,7 +178,7 @@ export function FormularioBroker() {
             type="submit"
             size="lg"
             disabled={status === "submitting"}
-            className="mt-8 w-full bg-primary text-primary-foreground hover:bg-primary-dark sm:w-auto"
+            className="mt-8 h-12 w-full bg-primary text-primary-foreground hover:bg-primary-dark sm:w-auto"
           >
             {status === "submitting" ? (
               <>

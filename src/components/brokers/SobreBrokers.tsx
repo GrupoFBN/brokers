@@ -3,7 +3,7 @@ import { SectionHeading } from "./SectionHeading";
 
 export function SobreBrokers() {
   return (
-    <section id="sobre" className="bg-surface-muted py-20 sm:py-28">
+    <section id="sobre" className="bg-surface-muted py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow="O que é" title="Conheça o FBN Brokers" />
 
@@ -12,7 +12,7 @@ export function SobreBrokers() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7 }}
-          className="mt-12 space-y-6 text-lg leading-relaxed text-muted-foreground sm:text-xl"
+          className="mt-10 space-y-5 text-base leading-relaxed text-muted-foreground sm:mt-12 sm:space-y-6 sm:text-lg lg:text-xl"
         >
           <p>
             O mundo está mudando. A cada dia somos mais exigidos em nossas relações com clientes e

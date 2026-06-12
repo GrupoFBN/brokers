@@ -4,7 +4,7 @@ import logoBranco from "@/assets/logo-fbn-branco.png.asset.json";
 
 export function Encerramento() {
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-primary-dark py-20 text-primary-foreground sm:py-24">
+    <footer className="relative overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-primary-dark py-16 text-primary-foreground sm:py-24">
       <div className="pointer-events-none absolute inset-0 opacity-10">
         <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -35,7 +35,7 @@ export function Encerramento() {
         <Button
           asChild
           size="lg"
-          className="mt-10 bg-background text-primary hover:bg-background/90"
+          className="mt-8 h-12 w-full bg-background text-primary hover:bg-background/90 sm:mt-10 sm:w-auto"
         >
           <a href="#contato">Quero me tornar um broker FBN</a>
         </Button>

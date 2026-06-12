@@ -14,7 +14,7 @@ const perfis = [
 
 export function PerfisIdeais() {
   return (
-    <section id="perfis" className="py-20 sm:py-28">
+    <section id="perfis" className="py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Perfis ideais"
@@ -22,7 +22,7 @@ export function PerfisIdeais() {
           subtitle="O programa é indicado para empresas e profissionais que já possuem relacionamento com uma base de clientes e desejam ampliar sua relevância por meio de soluções consultivas."
         />
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:mt-14 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
           {perfis.map((p, i) => (
             <motion.article
               key={p.title}
@@ -30,7 +30,7 @@ export function PerfisIdeais() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_24px_60px_-30px_rgba(30,71,143,0.45)]"
+              className="group relative w-[78%] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_24px_60px_-30px_rgba(30,71,143,0.45)] sm:w-auto sm:shrink"
             >
               <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-primary/5 transition-all group-hover:bg-primary/10" />
               <div className="relative">

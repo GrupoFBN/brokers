@@ -14,7 +14,7 @@ const itens = [
 
 export function BeneficiosEmpresa() {
   return (
-    <section id="beneficios" className="py-20 sm:py-28">
+    <section id="beneficios" className="py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Para sua empresa"
