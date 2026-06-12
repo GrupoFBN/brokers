@@ -52,7 +52,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Button asChild className="hidden bg-primary text-primary-foreground hover:bg-primary-dark sm:inline-flex">
-            <a href="#contato">Quero ser broker</a>
+            <a href="#contato">Quero ser um broker</a>
           </Button>
 
           <Sheet open={open} onOpenChange={setOpen}>
@@ -79,7 +79,7 @@ export function Header() {
                   className="mt-4 bg-primary text-primary-foreground hover:bg-primary-dark"
                   onClick={() => setOpen(false)}
                 >
-                  <a href="#contato">Quero ser broker</a>
+                  <a href="#contato">Quero ser um broker</a>
                 </Button>
               </div>
             </SheetContent>

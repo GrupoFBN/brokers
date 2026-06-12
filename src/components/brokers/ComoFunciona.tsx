@@ -31,7 +31,30 @@ export function ComoFunciona() {
         <SectionHeading eyebrow="Jornada" title="Como funciona a parceria" />
 
         <div className="relative mt-16 grid gap-6 lg:grid-cols-4">
-          <div className="pointer-events-none absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent lg:block" />
+          <svg
+            className="pointer-events-none absolute left-0 right-0 top-7 hidden h-px w-full lg:block"
+            viewBox="0 0 1000 2"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <motion.line
+              x1="0" y1="1" x2="1000" y2="1"
+              stroke="url(#cflinegrad)"
+              strokeWidth="2"
+              strokeDasharray="6 6"
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.4, ease: "easeOut" }}
+            />
+            <defs>
+              <linearGradient id="cflinegrad" x1="0" x2="1">
+                <stop offset="0" stopColor="transparent" />
+                <stop offset="0.5" stopColor="var(--color-accent-cyan)" />
+                <stop offset="1" stopColor="transparent" />
+              </linearGradient>
+            </defs>
+          </svg>
           {passos.map((p, i) => (
             <motion.div
               key={p.n}
@@ -39,12 +62,17 @@ export function ComoFunciona() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="relative rounded-2xl border border-border bg-card p-6 shadow-sm"
+              className="tech-card group relative rounded-2xl border border-border p-6"
             >
-              <span className="grid h-14 w-14 place-items-center rounded-xl bg-primary text-base font-bold text-primary-foreground shadow-lg shadow-primary/20">
-                {p.n}
-              </span>
-              <h3 className="mt-5 text-lg font-bold leading-snug text-foreground">{p.title}</h3>
+              <div className="flex items-center gap-3">
+                <span className="grid h-14 w-14 place-items-center rounded-xl bg-gradient-to-br from-primary to-primary-dark text-base font-bold text-primary-foreground shadow-lg shadow-primary/30">
+                  {p.n}
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent-cyan opacity-0 transition-opacity group-hover:opacity-100">
+                  Etapa
+                </span>
+              </div>
+              <h3 className="mt-5 text-lg font-bold leading-snug tracking-tight text-foreground">{p.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
             </motion.div>
           ))}

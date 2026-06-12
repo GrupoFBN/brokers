@@ -1,91 +1,64 @@
 
-# FBN Brokers — Landing Page
+# Upgrade visual FBN Brokers — tech, premium e ajustes finos
 
-Construir o front-end completo da home institucional do FBN Brokers, seguindo fielmente o briefing (todas as 13 seções), com identidade visual da FBN (azul corporativo + cinza, branco), tipografia premium e layout responsivo mobile-first. Sem backend, sem integrações, apenas UI e estados simulados.
+Tornar a página mais tech e premium (tipografia, fundo, animações), corrigir a imagem do hero (card cobrindo o rosto) e revisar o texto dos CTAs conforme pedido.
 
-## Identidade visual
+## 1. Hero — imagem e cards flutuantes
 
-- Paleta baseada na marca FBN: azul institucional `#1e478f` (primário), azul escuro `#0f2a5c` (profundidade), cinza claro neutro, branco e off-white para fundos.
-- Tipografia: par "outfit-figtree" (display moderno corporativo) carregada via `<link>` no `__root.tsx` e registrada em `@theme` de `src/styles.css`.
-- Tokens semânticos definidos em `src/styles.css` (primary, accent, muted, surface, gradient-primary, shadow-elegant). Nenhuma cor hardcoded nos componentes.
-- Microanimações suaves com `framer-motion` (fade/slide-in on scroll, hover sutil em cards e botões).
-- Ícones via `lucide-react`.
+- Reposicionar os 4 cards flutuantes para que nenhum cubra o rosto da personagem. Mover o card superior direito para baixo/lateral, garantir margem mínima em torno da metade superior central do retrato.
+- Ajustar posições: dois cards à esquerda (meio e base) e dois à direita (parte média-baixa e base), todos abaixo da linha dos olhos.
+- Em telas md/lg, reduzir o tamanho dos cards e adicionar `max-w` para não invadir o rosto.
+- Adicionar moldura tech: borda gradiente animada (conic), grid de pontos suave atrás da foto, glow azul pulsante atrás do retrato.
 
-## Assets
+## 2. Tipografia premium
 
-- Logos enviados pelo usuário registrados como Lovable Assets (azul e branco) e usados no header/encerramento.
-- Imagem hero gerada com `imagegen` em qualidade `standard`: composição corporativa de parceria/consultoria usando a mulher da foto enviada como referência de personagem principal (camisa branca com logo FBN, sorrindo, ambiente clean iluminado, elementos sutis de conexão/parceria ao fundo).
+- Trocar par de fontes para algo com mais personalidade tech/editorial:
+  - Display: **Space Grotesk** (títulos, com tracking negativo agressivo).
+  - Body: **Inter** com features `cv11`, `ss01`, `ss03` ativadas.
+- Aumentar peso e escala do H1 do hero (até `text-7xl` em desktop), com kerning apertado e gradiente azul→ciano em palavra-chave.
+- Usar `font-feature-settings` global para ativar ligaduras e numerais tabulares em métricas.
 
-## Estrutura de arquivos
+## 3. Camada visual tech (toda a página)
 
-```text
-src/
-  assets/
-    logo-fbn-azul.png.asset.json
-    logo-fbn-branco.png.asset.json
-    hero-brokers.jpg            (gerado)
-  components/brokers/
-    Header.tsx
-    Hero.tsx
-    SobreBrokers.tsx           (seção 3)
-    PropostaValor.tsx          (seção 4, pilares em cards)
-    ComoFunciona.tsx           (seção 5, 4 passos com linha de conexão)
-    BeneficiosEmpresa.tsx      (seção 6)
-    BeneficiosClientes.tsx     (seção 7)
-    PerfisIdeais.tsx           (seção 8, 7 cards com ícones)
-    EraDoJunto.tsx             (seção 9, bloco institucional com CTA)
-    Solucoes.tsx               (seção 10)
-    FormularioBroker.tsx       (seção 11)
-    FAQ.tsx                    (seção 12, accordion shadcn)
-    Encerramento.tsx           (seção 13)
-    SectionHeading.tsx         (helper visual reutilizável)
-  routes/
-    index.tsx                  (compõe todas as seções e meta tags)
-  styles.css                   (tokens FBN + fontes)
-```
+- Substituir o fundo plano por:
+  - Grid sutil animado (linhas que se acendem ao scroll).
+  - Aurora blobs azul/ciano com `blur-3xl` em mix-blend.
+  - Linha de "scanline" decorativa fina cruzando seções-âncora.
+- Adicionar token novo `--accent-cyan` (ciano elétrico) usado apenas em detalhes (ícones ativos, underline, badges live).
+- Cards globais: borda dupla com gradiente, leve glassmorphism (`backdrop-blur`), hover com tilt 3D leve e linha luminosa percorrendo a borda.
 
-## Páginas / Rotas
+## 4. Microanimações e motion
 
-Tudo na rota `/` (single landing page com âncoras `#sobre`, `#como-funciona`, `#perfis`, `#beneficios`, `#contato`). Atualizar `head()` em `index.tsx` com title "FBN Brokers — Relevância para sua empresa, consultoria para seus clientes" + meta description, OG e Twitter.
+- Hero: efeito de "typing/reveal" no H1 com mask gradient, contador animado nos números do `dl`.
+- Floating cards: entrada em stagger com leve flutuação contínua (`y: [-4, 4]` loop).
+- Seções: títulos com split-text fade-up, ícones com `whileInView` scale-pop, conector de "Como funciona" desenhado por `pathLength`.
+- Botões: shine sweep no hover, foco com anel duplo (primary + cyan).
+- Faixa "Era do junto": partículas/linhas conectando pontos (canvas leve ou SVG animado), nada pesado.
 
-## Header
+## 5. Ajustes de copy nos CTAs
 
-Sticky com blur, logo FBN azul + label "Brokers", nav âncoras (O que é, Como funciona, Perfis ideais, Benefícios), botão primário "Quero ser broker" levando a `#contato`. Menu mobile (Sheet do shadcn) com mesmos links.
+Substituir todas as ocorrências de "Quero ser broker" pelas variantes pedidas:
 
-## Hero
+- Header (desktop e mobile sheet): "Quero ser um broker".
+- Hero (CTA secundário): "Quero me tornar um broker".
+- Encerramento: "Quero me tornar um broker FBN".
+- Formulário (título da seção e botão): "Quero me tornar um broker" / botão "Quero me tornar um broker".
 
-- Layout split: coluna esquerda com tagline curta "FBN Brokers", H1 grande, subtítulo "Relevância para sua empresa, consultoria para seus clientes.", parágrafo de apoio, dois CTAs (primário "Quero ser broker", secundário outline "Conhecer o programa").
-- Coluna direita: imagem hero gerada, com 4 cards flutuantes (Parcerias estratégicas, Atendimento consultivo, Mais valor para seus clientes, Crescimento conjunto), ícones lucide, leve glow azul.
-- Fundo com gradiente sutil e malha geométrica decorativa.
+Mantém variação natural entre "um broker" e "me tornar um broker" conforme contexto.
 
-## Demais seções
+## 6. Arquivos afetados
 
-Implementadas conforme especificação literal do briefing (títulos, textos e itens copiados sem alteração), cada uma com:
+- `src/styles.css` — novas fontes, token `--accent-cyan`, utilitários (`.tech-grid`, `.shine`, `.gradient-border`).
+- `src/routes/__root.tsx` — trocar `<link>` de fontes para Space Grotesk + Inter.
+- `src/components/brokers/Hero.tsx` — reposicionar cards, novo H1, moldura tech, motion adicional.
+- `src/components/brokers/Header.tsx` — copy do botão.
+- `src/components/brokers/Encerramento.tsx` — copy do botão.
+- `src/components/brokers/FormularioBroker.tsx` — copy do botão e título.
+- `src/components/brokers/SectionHeading.tsx` — eyebrow com ponto ciano pulsante.
+- `src/components/brokers/ComoFunciona.tsx` — conector animado (`pathLength`).
+- `src/components/brokers/EraDoJunto.tsx` — fundo com partículas SVG.
+- (cards globais) ajustes locais em `PropostaValor`, `BeneficiosEmpresa`, `BeneficiosClientes`, `PerfisIdeais`, `Solucoes` para a nova borda/hover.
 
-- `SectionHeading` (eyebrow + título + subtítulo opcional).
-- Grids responsivos (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3/4`) com cards elegantes (border sutil, hover lift, ícone em badge colorida).
-- "Como funciona" em 4 passos numerados com linha conectora horizontal no desktop, vertical no mobile.
-- "Era do junto" como faixa full-bleed com fundo azul institucional + textura, texto claro e CTA.
+## Sem alterações
 
-## Formulário (apenas UI)
-
-- `react-hook-form` + `zod` + componentes shadcn (Input, Textarea, Select, Checkbox, Button).
-- Campos exatamente conforme briefing, com `Select` no campo "Tamanho da base de clientes" e `Input` aberto em "Segmento". Checkbox LGPD obrigatório.
-- Estados: `idle | submitting | success | error`. Em `onSubmit` válido: setTimeout 1.2s → success com mensagem "Solicitação enviada com sucesso. Em breve a equipe FBN entrará em contato." (toast + banner inline verde sutil). Em validação falha: banner "Revise os campos obrigatórios antes de enviar."
-- Botão "Marcar uma reunião" com loading spinner.
-
-## FAQ
-
-Accordion shadcn com as 6 perguntas/respostas do briefing.
-
-## Encerramento
-
-Faixa final em azul institucional com logo branca FBN, "FBN Brokers", frase final e botão "Quero ser broker FBN". Sem rodapé tradicional.
-
-## Detalhes técnicos
-
-- Sem backend, sem Lovable Cloud, sem rotas extras.
-- Instalar `framer-motion` (animações). `react-hook-form`, `zod`, `@hookform/resolvers` e componentes shadcn (button, input, textarea, select, checkbox, accordion, sheet, sonner) — adicionar os que ainda não existirem.
-- Smooth scroll via `scroll-behavior: smooth` em `html` + `scroll-margin-top` nas seções para compensar header sticky.
-- Acessibilidade: labels visíveis, `aria-*` em accordion, contraste AA, focus rings com cor primária.
-- Comunicação natural em PT-BR, sem travessões, conforme regra do briefing.
+- Nenhum backend, nenhuma rota nova, sem mudança de estrutura de seções, sem mudar textos institucionais (apenas os CTAs citados).
