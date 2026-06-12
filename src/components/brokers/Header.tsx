@@ -32,9 +32,9 @@ export function Header() {
           : "bg-transparent",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 px-4 sm:h-16 sm:gap-4 sm:px-6 lg:px-8">
         <a href="#top" className="flex items-center gap-2 min-w-0">
-          <img src={logo.url} alt="Grupo FBN" className="h-8 w-auto shrink-0" />
+          <img src={logo.url} alt="Grupo FBN" className="h-7 w-auto shrink-0 sm:h-8" />
           <span className="hidden text-sm font-semibold text-primary sm:inline">Brokers</span>
         </a>
 
@@ -57,7 +57,7 @@ export function Header() {
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Abrir menu">
+              <Button variant="ghost" size="icon" className="h-11 w-11 lg:hidden" aria-label="Abrir menu">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>

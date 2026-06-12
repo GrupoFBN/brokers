@@ -13,7 +13,7 @@ const itens = [
 
 export function BeneficiosClientes() {
   return (
-    <section className="bg-surface-muted py-20 sm:py-28">
+    <section className="bg-surface-muted py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow="Para seus clientes" title="O que seus clientes recebem" />
 

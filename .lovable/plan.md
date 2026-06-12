@@ -1,64 +1,65 @@
 
-# Upgrade visual FBN Brokers — tech, premium e ajustes finos
+# Otimização mobile da página FBN Brokers
 
-Tornar a página mais tech e premium (tipografia, fundo, animações), corrigir a imagem do hero (card cobrindo o rosto) e revisar o texto dos CTAs conforme pedido.
+Tornar a experiência mobile tão polida quanto o desktop, com destaque para exibir os cards flutuantes da hero também em telas pequenas.
 
-## 1. Hero — imagem e cards flutuantes
+## 1. Hero — cards flutuantes no mobile
 
-- Reposicionar os 4 cards flutuantes para que nenhum cubra o rosto da personagem. Mover o card superior direito para baixo/lateral, garantir margem mínima em torno da metade superior central do retrato.
-- Ajustar posições: dois cards à esquerda (meio e base) e dois à direita (parte média-baixa e base), todos abaixo da linha dos olhos.
-- Em telas md/lg, reduzir o tamanho dos cards e adicionar `max-w` para não invadir o rosto.
-- Adicionar moldura tech: borda gradiente animada (conic), grid de pontos suave atrás da foto, glow azul pulsante atrás do retrato.
+Hoje os 4 cards (`Parcerias`, `Mais valor`, `Atendimento`, `Crescimento`) usam `hidden md:flex`, então somem no mobile.
 
-## 2. Tipografia premium
+- Remover `hidden md:flex` → cards passam a aparecer em todas as larguras.
+- Criar duas variantes de posição por card: `posMobile` (compacta, dentro da moldura da foto) e `posDesktop` (atual, com leve overflow lateral).
+- No mobile:
+  - Reduzir cards para versão compacta: ícone 32px, label `text-[11px]`, esconder o `sub` (`hidden xs:flex`) para evitar quebra.
+  - Mostrar apenas 2 cards "principais" sobrepostos à imagem (Parcerias no topo-esquerda, Crescimento na base-direita) para não poluir; os outros 2 reaparecem a partir de `sm:`.
+  - Usar `max-w-[44%]` e `backdrop-blur-md` reforçado para legibilidade sobre a foto.
+- Garantir que nenhum card cubra o rosto: posicionar apenas nas laterais inferiores da foto no mobile.
+- Reduzir a altura do badge "Live" e da moldura conic no mobile (menos blur, menos `-inset`).
 
-- Trocar par de fontes para algo com mais personalidade tech/editorial:
-  - Display: **Space Grotesk** (títulos, com tracking negativo agressivo).
-  - Body: **Inter** com features `cv11`, `ss01`, `ss03` ativadas.
-- Aumentar peso e escala do H1 do hero (até `text-7xl` em desktop), com kerning apertado e gradiente azul→ciano em palavra-chave.
-- Usar `font-feature-settings` global para ativar ligaduras e numerais tabulares em métricas.
+## 2. Hero — tipografia e espaçamento mobile
 
-## 3. Camada visual tech (toda a página)
+- H1: reduzir escala mobile para `text-4xl` (hoje `text-5xl` quebra feio em 360px) e manter `sm:text-6xl lg:text-7xl`.
+- Parágrafo: `text-[15px]` no mobile.
+- Botões: empilhar com `w-full` no mobile, altura `h-12`, ícone alinhado.
+- `dl` de métricas: virar 3 colunas compactas com `text-[11px]` / `text-xs`.
+- Reduzir `pt-28` → `pt-24` no mobile para encostar mais no header.
 
-- Substituir o fundo plano por:
-  - Grid sutil animado (linhas que se acendem ao scroll).
-  - Aurora blobs azul/ciano com `blur-3xl` em mix-blend.
-  - Linha de "scanline" decorativa fina cruzando seções-âncora.
-- Adicionar token novo `--accent-cyan` (ciano elétrico) usado apenas em detalhes (ícones ativos, underline, badges live).
-- Cards globais: borda dupla com gradiente, leve glassmorphism (`backdrop-blur`), hover com tilt 3D leve e linha luminosa percorrendo a borda.
+## 3. Header mobile
 
-## 4. Microanimações e motion
+- Garantir `Sheet` lateral com itens grandes (`text-base`, `py-3`), CTA "Quero ser um broker" full-width fixo no rodapé do sheet.
+- Logo um pouco menor no mobile, botão hambúrguer com área de toque mínima 44px.
+- Header `h-14` no mobile (hoje provavelmente `h-16/20`).
 
-- Hero: efeito de "typing/reveal" no H1 com mask gradient, contador animado nos números do `dl`.
-- Floating cards: entrada em stagger com leve flutuação contínua (`y: [-4, 4]` loop).
-- Seções: títulos com split-text fade-up, ícones com `whileInView` scale-pop, conector de "Como funciona" desenhado por `pathLength`.
-- Botões: shine sweep no hover, foco com anel duplo (primary + cyan).
-- Faixa "Era do junto": partículas/linhas conectando pontos (canvas leve ou SVG animado), nada pesado.
+## 4. Seções gerais — refinos mobile
 
-## 5. Ajustes de copy nos CTAs
+- Padding vertical: `py-20 sm:py-28` → `py-14 sm:py-20 lg:py-28` em todas as seções (`SobreBrokers`, `PropostaValor`, `ComoFunciona`, `BeneficiosEmpresa/Clientes`, `PerfisIdeais`, `EraDoJunto`, `Solucoes`, `FAQ`, `Encerramento`).
+- `SectionHeading`: título `text-3xl sm:text-4xl lg:text-5xl`, subtítulo `text-[15px]`.
+- Grids: forçar `grid-cols-1` no mobile com `gap-4`, e só promover a `sm:grid-cols-2` quando fizer sentido.
+- `PerfisIdeais` (7 cards): no mobile virar carrossel horizontal com `snap-x` + `overflow-x-auto` + `flex` (cards `min-w-[78%]`), evitando lista enorme; a partir de `sm:` volta ao grid atual.
+- `ComoFunciona`: esconder o SVG conector animado no mobile (visual quebra em vertical) e mostrar uma linha vertical pontilhada simples entre os passos.
+- `Solucoes`: cards full-width no mobile, ícones e títulos com hierarquia clara.
+- `EraDoJunto`: reduzir tamanho do título e remover partículas SVG no mobile (performance + ruído).
+- `FormularioBroker`: campos `h-12`, labels `text-sm`, `Select` com `text-base` para evitar zoom no iOS, botão full-width.
+- `FAQ`: itens com `py-4`, ícone chevron 20px.
+- `Encerramento`: CTA empilhado e centralizado.
 
-Substituir todas as ocorrências de "Quero ser broker" pelas variantes pedidas:
+## 5. Performance e toque mobile
 
-- Header (desktop e mobile sheet): "Quero ser um broker".
-- Hero (CTA secundário): "Quero me tornar um broker".
-- Encerramento: "Quero me tornar um broker FBN".
-- Formulário (título da seção e botão): "Quero me tornar um broker" / botão "Quero me tornar um broker".
-
-Mantém variação natural entre "um broker" e "me tornar um broker" conforme contexto.
+- Adicionar `loading="eager"` + `fetchpriority="high"` na imagem do hero, e `decoding="async"` nas demais.
+- Trocar `animate-spin-slow` da moldura por uma versão mais leve (ou desativar abaixo de `sm:`) — economiza GPU em mobile.
+- Garantir `tap-highlight-color: transparent` e `min-h-[44px]` nos elementos clicáveis principais.
+- Revisar `overflow-x` global: o body precisa de `overflow-x-hidden` para conter os cards e blobs do hero, que hoje extrapolam viewport em mobile.
 
 ## 6. Arquivos afetados
 
-- `src/styles.css` — novas fontes, token `--accent-cyan`, utilitários (`.tech-grid`, `.shine`, `.gradient-border`).
-- `src/routes/__root.tsx` — trocar `<link>` de fontes para Space Grotesk + Inter.
-- `src/components/brokers/Hero.tsx` — reposicionar cards, novo H1, moldura tech, motion adicional.
-- `src/components/brokers/Header.tsx` — copy do botão.
-- `src/components/brokers/Encerramento.tsx` — copy do botão.
-- `src/components/brokers/FormularioBroker.tsx` — copy do botão e título.
-- `src/components/brokers/SectionHeading.tsx` — eyebrow com ponto ciano pulsante.
-- `src/components/brokers/ComoFunciona.tsx` — conector animado (`pathLength`).
-- `src/components/brokers/EraDoJunto.tsx` — fundo com partículas SVG.
-- (cards globais) ajustes locais em `PropostaValor`, `BeneficiosEmpresa`, `BeneficiosClientes`, `PerfisIdeais`, `Solucoes` para a nova borda/hover.
+- `src/components/brokers/Hero.tsx` — cards mobile, tipografia, espaçamentos, moldura.
+- `src/components/brokers/Header.tsx` — sheet e alturas mobile.
+- `src/components/brokers/SectionHeading.tsx` — escala tipográfica.
+- `src/components/brokers/PerfisIdeais.tsx` — carrossel no mobile.
+- `src/components/brokers/ComoFunciona.tsx` — conector vertical no mobile.
+- `src/components/brokers/{PropostaValor,BeneficiosEmpresa,BeneficiosClientes,Solucoes,SobreBrokers,EraDoJunto,FAQ,FormularioBroker,Encerramento}.tsx` — paddings, grids, tipografia.
+- `src/styles.css` — `overflow-x-hidden` no `body`, utilitário `.no-tap-highlight`, ajuste de animação `animate-spin-slow` com `@media (max-width: 640px)`.
 
 ## Sem alterações
 
-- Nenhum backend, nenhuma rota nova, sem mudança de estrutura de seções, sem mudar textos institucionais (apenas os CTAs citados).
+- Sem mudanças de copy, sem novas seções, sem backend, sem alteração de fontes ou paleta.
