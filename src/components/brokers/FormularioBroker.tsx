@@ -74,7 +74,7 @@ export function FormularioBroker() {
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Vamos conversar"
-          title="Quero ser um broker FBN"
+          title="Quero me tornar um broker FBN"
           subtitle="Preencha os dados abaixo e nossa equipe entrará em contato para entender o perfil da sua empresa e apresentar o modelo de parceria."
         />
 
@@ -186,7 +186,7 @@ export function FormularioBroker() {
                 Enviando...
               </>
             ) : (
-              "Marcar uma reunião"
+              "Quero me tornar um broker"
             )}
           </Button>
         </motion.form>
