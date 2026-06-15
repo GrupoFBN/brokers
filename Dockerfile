@@ -21,17 +21,13 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-# Copia o package.json (apenas para o npm run preview)
-COPY --from=builder /app/package*.json ./
-
-# Copia os arquivos do build e as pastas necessárias do frontend
+# Copia o build completo (client + server)
 COPY --from=builder /app/dist ./dist
 
-# Instala apenas as dependências de produção para rodar o preview
-RUN npm ci --omit=dev
+# Porta padrão do Nitro
+EXPOSE 3000
 
-# O vite preview roda na porta 4173 por padrão
-EXPOSE 4173
-
-# Comando para rodar a aplicação escutando em todas as interfaces de rede (0.0.0.0)
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0"]
+# Roda o servidor Nitro diretamente (sem restrição de hosts)
+ENV HOST=0.0.0.0
+ENV PORT=3000
+CMD ["node", "dist/server/server.js"]
