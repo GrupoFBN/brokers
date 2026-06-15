@@ -9,8 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MotoRoadProtectRouteImport } from './routes/moto-road-protect'
+import { Route as DolphinDicasRouteImport } from './routes/dolphin-dicas'
 import { Route as IndexRouteImport } from './routes/index'
 
+const MotoRoadProtectRoute = MotoRoadProtectRouteImport.update({
+  id: '/moto-road-protect',
+  path: '/moto-road-protect',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DolphinDicasRoute = DolphinDicasRouteImport.update({
+  id: '/dolphin-dicas',
+  path: '/dolphin-dicas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +31,50 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dolphin-dicas': typeof DolphinDicasRoute
+  '/moto-road-protect': typeof MotoRoadProtectRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dolphin-dicas': typeof DolphinDicasRoute
+  '/moto-road-protect': typeof MotoRoadProtectRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dolphin-dicas': typeof DolphinDicasRoute
+  '/moto-road-protect': typeof MotoRoadProtectRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/dolphin-dicas' | '/moto-road-protect'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/dolphin-dicas' | '/moto-road-protect'
+  id: '__root__' | '/' | '/dolphin-dicas' | '/moto-road-protect'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DolphinDicasRoute: typeof DolphinDicasRoute
+  MotoRoadProtectRoute: typeof MotoRoadProtectRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/moto-road-protect': {
+      id: '/moto-road-protect'
+      path: '/moto-road-protect'
+      fullPath: '/moto-road-protect'
+      preLoaderRoute: typeof MotoRoadProtectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dolphin-dicas': {
+      id: '/dolphin-dicas'
+      path: '/dolphin-dicas'
+      fullPath: '/dolphin-dicas'
+      preLoaderRoute: typeof DolphinDicasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +87,19 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DolphinDicasRoute: DolphinDicasRoute,
+  MotoRoadProtectRoute: MotoRoadProtectRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import logoBranco from "@/assets/logo-fbn-branco.png.asset.json";
+import logoBranco from "@/assets/Logo-FBN-SVG-Branco.svg";
 
 export function Encerramento() {
   return (
@@ -23,7 +23,7 @@ export function Encerramento() {
         transition={{ duration: 0.7 }}
         className="relative mx-auto flex max-w-3xl flex-col items-center px-4 text-center sm:px-6 lg:px-8"
       >
-        <img src={logoBranco.url} alt="Grupo FBN" className="h-12 w-auto" />
+        <img src={logoBranco} alt="Grupo FBN" className="h-12 w-auto" />
         <p className="mt-4 text-sm font-semibold uppercase tracking-[0.25em] text-primary-foreground/80">
           FBN Brokers
         </p>
