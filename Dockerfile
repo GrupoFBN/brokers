@@ -21,8 +21,8 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-# Copia o build completo (client + server)
-COPY --from=builder /app/dist ./dist
+# Copia o build completo (client + server) gerado pelo Nitro
+COPY --from=builder /app/.output ./.output
 
 # Porta padrão do Nitro
 EXPOSE 3000
@@ -30,4 +30,4 @@ EXPOSE 3000
 # Roda o servidor Nitro diretamente (sem restrição de hosts)
 ENV HOST=0.0.0.0
 ENV PORT=3000
-CMD ["node", "dist/server/server.js"]
+CMD ["node", ".output/server/index.mjs"]
