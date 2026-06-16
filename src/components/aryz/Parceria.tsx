@@ -1,6 +1,6 @@
 import { Plus, Users, Building2, Zap, MessageCircle, ShieldCheck } from "lucide-react";
 import aryzLogo from "@/assets/aryz/aryz-logo-transparent.png";
-import fbnLogo from "@/assets/aryz/fbn-logo.svg";
+import fbnLogo from "@/assets/aryz/fbn-logo.png";
 
 const DIFERENCIAIS = [
   { icon: Users, title: "Atendimento especializado", text: "Time consultivo dedicado ao seu setor." },

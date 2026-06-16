@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import aryzLogo from "@/assets/aryz/aryz-logo-transparent.png";
-import fbnLogo from "@/assets/aryz/fbn-logo.svg";
+import fbnLogo from "@/assets/aryz/fbn-logo.png";
 
 const NAV = [
   { href: "#case", label: "Case" },
