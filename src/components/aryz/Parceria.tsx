@@ -37,7 +37,6 @@ export function Parceria() {
           <div className="relative">
             <div className="bg-gradient-soft rounded-3xl p-8 lg:p-12 border border-border shadow-card">
               <div className="flex items-center justify-center gap-6 lg:gap-10">
-                <div className="bg-background rounded-2xl p-6 shadow-card flex items-center justify-center min-h-[120px] flex-1">
                 <div className="bg-background rounded-2xl p-6 shadow-card flex items-center justify-center min-h-[60px] flex-1">
                   <img src={aryzLogo} alt="ARYZ" className="h-7 lg:h-8 w-auto object-contain" />
                 </div>
