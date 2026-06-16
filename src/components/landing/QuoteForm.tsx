@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
-import { CheckCircle2, Send, ShieldCheck } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { IMaskInput } from "react-imask";
+import { CheckCircle2, Send, ShieldCheck, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,13 +17,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export type InsuranceType = "moto" | "auto";
+export type InsuranceType = "moto" | "auto" | "consorcio";
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome completo").max(120),
   telefone: z.string().trim().min(8, "Informe um telefone válido").max(20),
   email: z.string().trim().email("E-mail inválido").max(180),
-  tipo: z.enum(["moto", "auto"], { required_error: "Selecione o tipo de produto" }),
+  tipo: z.enum(["moto", "auto", "consorcio"], { required_error: "Selecione o tipo de produto" }),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -46,8 +47,17 @@ export function QuoteForm({ preselected }: { preselected?: InsuranceType }) {
 
   const onSubmit = async (_values: FormValues) => {
     setStatus("submitting");
-    await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((r) => setTimeout(r, 1500));
     setStatus("success");
+
+    // Meta Pixel Tracking
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "Lead", {
+        content_name: "Moto Viagens",
+        parceiro: window.location.pathname,
+      });
+    }
+
     toast.success("Enviado para a FBN", {
       description: "Em breve nossa equipe entrará em contato.",
     });
@@ -86,77 +96,106 @@ export function QuoteForm({ preselected }: { preselected?: InsuranceType }) {
             </div>
           </div>
 
-          <div className="p-6 sm:p-10">
-            {status === "success" ? (
-              <div className="flex flex-col items-center text-center">
-                <span className="grid h-16 w-16 place-items-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/30">
-                  <CheckCircle2 className="h-8 w-8" />
-                </span>
-                <h3 className="mt-6 font-display text-2xl font-extrabold sm:text-3xl">
-                  Enviado com sucesso
-                </h3>
-                <p className="mt-3 max-w-md text-muted-foreground">
-                  Em breve a equipe FBN entrará em contato pelos dados informados.
-                </p>
-                <Button
-                  variant="outline"
-                  className="mt-8"
-                  onClick={() => {
-                    form.reset();
-                    setStatus("idle");
-                  }}
+          <div className="p-6 sm:p-10 min-h-[400px]">
+            <AnimatePresence mode="wait">
+              {status === "success" ? (
+                <motion.div
+                  key="success-message"
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="flex flex-col items-center text-center py-8"
                 >
-                  Enviar nova solicitação
-                </Button>
-              </div>
-            ) : (
-              <form id="formulario-motoviagens" name="formulario-motoviagens" onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                <Field label="Nome completo" error={form.formState.errors.nome?.message} required className="sm:col-span-2">
-                  <Input placeholder="Seu nome" {...form.register("nome")} />
-                </Field>
-
-                <Field label="Telefone / WhatsApp" error={form.formState.errors.telefone?.message} required>
-                  <Input placeholder="(11) 99999-0000" inputMode="tel" {...form.register("telefone")} />
-                </Field>
-
-                <Field label="E-mail" error={form.formState.errors.email?.message} required>
-                  <Input type="email" placeholder="voce@email.com" {...form.register("email")} />
-                </Field>
-
-                <Field label="Tipo de produto" error={form.formState.errors.tipo?.message} required className="sm:col-span-2">
-                  <Select
-                    value={form.watch("tipo")}
-                    onValueChange={(v) => form.setValue("tipo", v as InsuranceType, { shouldValidate: true })}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="moto">Seguro de Moto</SelectItem>
-                      <SelectItem value="auto">Seguro Auto</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </Field>
-
-                <div className="sm:col-span-2">
+                  <span className="grid h-16 w-16 place-items-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/30">
+                    <CheckCircle2 className="h-8 w-8" />
+                  </span>
+                  <h3 className="mt-6 font-display text-2xl font-extrabold sm:text-3xl">
+                    Enviado com sucesso!
+                  </h3>
+                  <p className="mt-3 max-w-md text-muted-foreground">
+                    Em breve você receberá um contato da nossa equipe para orientações do próximo passo.
+                  </p>
                   <Button
-                    type="submit"
-                    size="lg"
-                    disabled={status === "submitting"}
-                    className="h-12 w-full bg-gradient-fbn text-base text-primary-foreground shadow-elegant hover:opacity-95"
+                    variant="outline"
+                    className="mt-8"
+                    onClick={() => {
+                      form.reset();
+                      setStatus("idle");
+                    }}
                   >
-                    {status === "submitting" ? (
-                      "Enviando..."
-                    ) : (
-                      <>
-                        <Send className="mr-1 h-4 w-4" />
-                        Enviar para a FBN
-                      </>
-                    )}
+                    Enviar outra solicitação
                   </Button>
-                </div>
-              </form>
-            )}
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="moto-form"
+                  id="formulario-motoviagens"
+                  name="formulario-motoviagens"
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="grid grid-cols-1 gap-5 sm:grid-cols-2"
+                >
+                  <Field label="Nome completo" error={form.formState.errors.nome?.message} required className="sm:col-span-2">
+                    <Input placeholder="Seu nome" {...form.register("nome")} />
+                  </Field>
+
+                  <Field label="Telefone / WhatsApp" error={form.formState.errors.telefone?.message} required>
+                    <IMaskInput
+                      mask="(00) 00000-0000"
+                      unmask={false}
+                      placeholder="(00) 00000-0000"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      {...form.register("telefone")}
+                      onAccept={(value: string) => form.setValue("telefone", value, { shouldValidate: true })}
+                    />
+                  </Field>
+
+                  <Field label="E-mail" error={form.formState.errors.email?.message} required>
+                    <Input type="email" placeholder="voce@email.com" {...form.register("email")} />
+                  </Field>
+
+                  <Field label="Tipo de produto" error={form.formState.errors.tipo?.message} required className="sm:col-span-2">
+                    <Select
+                      value={form.watch("tipo")}
+                      onValueChange={(v) => form.setValue("tipo", v as InsuranceType, { shouldValidate: true })}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="moto">Seguro de Moto</SelectItem>
+                        <SelectItem value="auto">Seguro Auto</SelectItem>
+                        <SelectItem value="consorcio">Consórcio de Veículo</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </Field>
+
+                  <div className="sm:col-span-2">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={status === "submitting"}
+                      className="h-12 w-full bg-gradient-fbn text-base text-primary-foreground shadow-elegant hover:opacity-95"
+                    >
+                      {status === "submitting" ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Enviando...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="mr-1 h-4 w-4" />
+                          Enviar para a FBN
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </motion.form>
+              )}
+            </AnimatePresence>
           </div>
         </motion.div>
       </div>

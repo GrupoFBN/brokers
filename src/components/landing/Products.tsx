@@ -1,26 +1,36 @@
 import { motion } from "framer-motion";
-import { Bike, Car, Check, ArrowRight } from "lucide-react";
+import { Bike, Car, Wallet, Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import motoImg from "@/assets/moto-card.jpg";
 import autoImg from "@/assets/auto-card.jpg";
+import consorcioImg from "@/assets/consorcio-card.jpg";
 import type { InsuranceType } from "./QuoteForm";
 
 const motoBenefits = [
-  "Coberturas para roubo e furto",
-  "Colisão e danos ao veículo",
+  "Cobertura roubo e furto",
+  "Colisão e danos",
   "Assistência 24 horas",
-  "Guincho e suporte emergencial",
-  "Proteção contra terceiros",
-  "Opções conforme perfil e disponibilidade",
+  "Guincho e suporte",
+  "Danos a terceiros",
+  "Perfil personalizado",
 ];
 
 const autoBenefits = [
-  "Proteção para carro particular",
+  "Proteção completa",
   "Assistência 24 horas",
-  "Cobertura contra terceiros",
-  "Suporte em imprevistos",
-  "Opções para diferentes perfis de uso",
-  "Atendimento personalizado",
+  "Danos a terceiros",
+  "Suporte emergencial",
+  "Diferentes perfis de uso",
+  "Atendimento consultivo",
+];
+
+const consorcioBenefits = [
+  "Planos para carro",
+  "Planos para moto",
+  "Parcelas sem juros",
+  "Lance e contemplação",
+  "Quitação de financiamento",
+  "Curadoria FBN",
 ];
 
 type Props = { onQuote: (type: InsuranceType) => void };
@@ -37,17 +47,17 @@ export function Products({ onQuote }: Props) {
             Escolha a proteção ideal para <span className="text-gradient-fbn">o seu veículo</span>
           </h2>
           <p className="mt-4 text-muted-foreground sm:text-lg">
-            Atendimento consultivo da FBN, sem promessas vazias. Você nos conta o perfil, a equipe
-            analisa e apresenta as opções compatíveis.
+            Atendimento consultivo da FBN. Você nos conta o perfil, a equipe
+            analisa e apresenta as melhores opções.
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           <ProductCard
             icon={<Bike className="h-5 w-5" />}
             tag="Duas rodas"
             title="Seguro de Moto"
-            description="Proteção para motociclistas no uso diário, em viagens, passeios, eventos ou grandes expedições, com a curadoria FBN."
+            description="Proteção para motociclistas no uso diário, viagens ou grandes expedições, com a curadoria FBN."
             image={motoImg}
             imageAlt="Moto adventure parada em mirante de montanha"
             benefits={motoBenefits}
@@ -58,17 +68,28 @@ export function Products({ onQuote }: Props) {
             icon={<Car className="h-5 w-5" />}
             tag="Quatro rodas"
             title="Seguro Auto"
-            description="Proteção para o carro da família, o veículo de apoio ou o automóvel do dia a dia, com atendimento consultivo FBN."
+            description="Proteção para o carro da família ou o automóvel do dia a dia, com atendimento consultivo FBN."
             image={autoImg}
             imageAlt="SUV em estrada cênica de montanha"
             benefits={autoBenefits}
             cta="Falar sobre seguro auto"
             onCta={() => onQuote("auto")}
           />
+          <ProductCard
+            icon={<Wallet className="h-5 w-5" />}
+            tag="Planejamento"
+            title="Consórcio de Veículo"
+            description="Conquiste seu carro ou moto de forma planejada, com parcelas que cabem no seu orçamento."
+            image={consorcioImg}
+            imageAlt="Entrega de chaves de um carro novo em concessionária"
+            benefits={consorcioBenefits}
+            cta="Falar sobre consórcio"
+            onCta={() => onQuote("consorcio")}
+          />
         </div>
 
         <p className="mt-8 text-center text-xs text-muted-foreground">
-          Todas as condições dependem de análise técnica.
+          A FBN não promete aprovação ou menor preço. Todas as condições dependem de análise técnica.
         </p>
       </div>
     </section>
@@ -102,9 +123,9 @@ function ProductCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.55 }}
-      className="group overflow-hidden rounded-3xl border border-border bg-surface shadow-card transition-all hover:border-primary/40 hover:shadow-elegant"
+      className="group flex flex-col h-full overflow-hidden rounded-3xl border border-border bg-surface shadow-card transition-all hover:border-primary/40 hover:shadow-elegant"
     >
-      <div className="relative h-48 overflow-hidden sm:h-56">
+      <div className="relative h-48 overflow-hidden sm:h-56 shrink-0">
         <img
           src={image}
           alt={imageAlt}
@@ -118,23 +139,25 @@ function ProductCard({
         </span>
       </div>
 
-      <div className="p-6 sm:p-8">
-        <h3 className="font-display text-2xl font-extrabold sm:text-3xl">{title}</h3>
-        <p className="mt-3 text-sm text-muted-foreground sm:text-base">{description}</p>
+      <div className="flex flex-col flex-1 p-6 sm:p-8">
+        <div className="flex-1">
+          <h3 className="font-display text-2xl font-extrabold sm:text-3xl">{title}</h3>
+          <p className="mt-3 text-sm text-muted-foreground sm:text-base">{description}</p>
 
-        <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {benefits.map((b) => (
-            <li key={b} className="flex items-start gap-2 text-sm">
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-              <span className="text-foreground/90">{b}</span>
-            </li>
-          ))}
-        </ul>
+          <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {benefits.map((b) => (
+              <li key={b} className="flex items-start gap-2 text-sm">
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span className="text-foreground/90">{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <Button
           onClick={onCta}
           size="lg"
-          className="mt-8 w-full bg-gradient-fbn text-primary-foreground shadow-card hover:opacity-95"
+          className="mt-8 w-full bg-gradient-fbn text-primary-foreground shadow-card hover:opacity-95 shrink-0"
         >
           {cta}
           <ArrowRight className="ml-1 h-4 w-4" />

@@ -121,9 +121,17 @@
   --volt: oklch(0.78 0.18 158);
   --volt-soft: oklch(0.95 0.07 158);
 
+  /* Moto Viagens partner accent — used sparingly */
+  --partner: oklch(0.7 0.19 50);                 /* #F46A00 orange */
+
   /* MotoViagens/Landing gradients */
   --gradient-fbn: linear-gradient(135deg, oklch(0.42 0.16 258) 0%, oklch(0.55 0.18 258) 100%);
   --gradient-fbn-soft: linear-gradient(180deg, oklch(0.965 0.012 245) 0%, oklch(0.99 0.006 245) 100%);
+  --gradient-deep: linear-gradient(135deg, oklch(0.32 0.13 258) 0%, oklch(0.42 0.16 258) 60%, oklch(0.55 0.18 258) 100%);
+
+  /* Semantic gradients & shadows */
+  --shadow-elegant: 0 18px 40px -22px oklch(0.42 0.16 258 / 35%);
+  --shadow-glow: 0 0 36px -6px oklch(0.55 0.18 258 / 35%);
 
   /* ARYZ colors */
   --brand-blue: oklch(0.48 0.14 264);    /* #2C5AA8 FBN */
@@ -301,5 +309,13 @@
 }
 @utility shadow-card {
   box-shadow: var(--shadow-card);
+}
+
+@utility shadow-elegant {
+  box-shadow: var(--shadow-elegant);
+}
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
 }
 

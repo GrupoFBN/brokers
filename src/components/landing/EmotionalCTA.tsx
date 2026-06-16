@@ -11,9 +11,9 @@ export function EmotionalCTA({ onCta }: { onCta: () => void }) {
           src={roadImg}
           alt="Estrada ao entardecer"
           loading="lazy"
-          className="h-full w-full object-cover object-center opacity-60"
+          className="h-full w-full object-cover object-center opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-deep opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-dark/40 via-primary-dark/70 to-primary-dark/90" />
       </div>
 
       <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">

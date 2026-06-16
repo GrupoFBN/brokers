@@ -15,12 +15,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:grid lg:grid-cols-[auto_1fr_auto] lg:gap-8">
         <a href="#topo" aria-label="FBN" className="min-w-0">
           <BrandLockup size="md" />
         </a>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center justify-center gap-7 lg:flex">
           {NAV.map((n) => (
             <a
               key={n.href}
@@ -32,7 +32,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-end gap-2">
           <Button
             asChild
             className="hidden bg-fbn-blue text-white hover:bg-fbn-blue-deep sm:inline-flex"

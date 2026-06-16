@@ -16,12 +16,12 @@ export function Header({ onCta }: { onCta: () => void }) {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="border-b border-border bg-background/90 backdrop-blur-xl">
-        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:grid lg:grid-cols-[auto_1fr_auto] lg:gap-8 lg:px-8">
           <a href="#top" className="flex min-w-0 items-center">
             <BrandLockup />
           </a>
 
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center justify-center gap-7 lg:flex">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -31,22 +31,24 @@ export function Header({ onCta }: { onCta: () => void }) {
                 {item.label}
               </a>
             ))}
+          </nav>
+
+          <div className="flex items-center justify-end gap-2">
             <Button
               onClick={onCta}
-              className="bg-gradient-fbn text-primary-foreground shadow-card hover:opacity-95"
+              className="hidden lg:inline-flex bg-gradient-fbn text-primary-foreground shadow-card hover:opacity-95"
             >
               Fale com a FBN
             </Button>
-          </nav>
-
-          <button
-            type="button"
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-border text-foreground lg:hidden"
-            onClick={() => setOpen((s) => !s)}
-            aria-label="Abrir menu"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+            <button
+              type="button"
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-border text-foreground lg:hidden"
+              onClick={() => setOpen((s) => !s)}
+              aria-label="Abrir menu"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
 
         {open && (

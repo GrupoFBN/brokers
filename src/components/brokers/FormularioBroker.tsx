@@ -2,8 +2,9 @@ import React, { useState, useId } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { motion } from "framer-motion";
-import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2, AlertCircle, Loader2, Send } from "lucide-react";
+import { IMaskInput } from "react-imask";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -53,7 +54,9 @@ export function FormularioBroker() {
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { lgpd: false as unknown as true },
+    defaultValues: {
+      lgpd: undefined,
+    },
   });
 
   const baseValue = watch("base");
@@ -64,7 +67,15 @@ export function FormularioBroker() {
     setTimeout(() => {
       setStatus("success");
       reset();
-    }, 1200);
+
+      // Meta Pixel Tracking
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        (window as any).fbq("track", "Lead", {
+          content_name: "Brokers",
+          parceiro: window.location.pathname,
+        });
+      }
+    }, 1500);
   };
 
   const onInvalid = () => setStatus("error");
@@ -78,120 +89,163 @@ export function FormularioBroker() {
           subtitle="Preencha os dados abaixo e nossa equipe entrará em contato para entender o perfil da sua empresa e apresentar o modelo de parceria."
         />
 
-        <motion.form
-          id="formulario-broker"
-          name="formulario-broker"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          noValidate
-          onSubmit={handleSubmit(onSubmit, onInvalid)}
-          className="mt-12 rounded-3xl border border-border bg-card p-6 shadow-[0_30px_80px_-40px_rgba(30,71,143,0.35)] sm:p-10"
-        >
-          {status === "success" && (
-            <div className="mb-6 flex items-start gap-3 rounded-xl border border-success/30 bg-success/5 p-4 text-success">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" />
-              <p className="text-sm font-medium">
-                Solicitação enviada com sucesso. Em breve a equipe FBN entrará em contato.
-              </p>
-            </div>
-          )}
-          {status === "error" && (
-            <div className="mb-6 flex items-start gap-3 rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive">
-              <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" />
-              <p className="text-sm font-medium">
-                Revise os campos obrigatórios antes de enviar.
-              </p>
-            </div>
-          )}
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Nome completo" error={errors.nome?.message}>
-              <Input {...register("nome")} placeholder="Seu nome" />
-            </Field>
-            <Field label="Nome da empresa" error={errors.empresa?.message}>
-              <Input {...register("empresa")} placeholder="Razão social ou nome fantasia" />
-            </Field>
-            <Field label="Segmento de atuação" error={errors.segmento?.message}>
-              <Input {...register("segmento")} placeholder="Ex.: Contabilidade, Imobiliária..." />
-            </Field>
-            <Field label="Cargo ou função" error={errors.cargo?.message}>
-              <Input {...register("cargo")} placeholder="Seu cargo na empresa" />
-            </Field>
-            <Field label="Telefone ou WhatsApp" error={errors.telefone?.message}>
-              <Input {...register("telefone")} placeholder="(00) 00000-0000" />
-            </Field>
-            <Field label="E-mail" error={errors.email?.message}>
-              <Input type="email" {...register("email")} placeholder="voce@empresa.com" />
-            </Field>
-            <Field label="CNPJ" error={errors.cnpj?.message}>
-              <Input {...register("cnpj")} placeholder="00.000.000/0000-00" />
-            </Field>
-            <Field label="Site ou Instagram da empresa" error={errors.site?.message}>
-              <Input {...register("site")} placeholder="empresa.com.br ou @empresa" />
-            </Field>
-            <Field
-              label="Tamanho aproximado da base de clientes"
-              error={errors.base?.message}
-              className="sm:col-span-2"
-            >
-              <Select value={baseValue} onValueChange={(v) => setValue("base", v, { shouldValidate: true })}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione uma opção" />
-                </SelectTrigger>
-                <SelectContent>
-                  {BASE_OPTIONS.map((o) => (
-                    <SelectItem key={o} value={o}>{o}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </Field>
-            <Field
-              label="Mensagem ou observações"
-              error={errors.mensagem?.message}
-              className="sm:col-span-2"
-            >
-              <Textarea
-                {...register("mensagem")}
-                rows={4}
-                placeholder="Conte um pouco sobre sua empresa e o que espera da parceria"
-              />
-            </Field>
-          </div>
-
-          <div className="mt-6 flex items-start gap-3 rounded-xl border border-border bg-surface-muted p-4">
-            <Checkbox
-              id="lgpd"
-              checked={!!lgpdValue}
-              onCheckedChange={(c) => setValue("lgpd", (c === true) as true, { shouldValidate: true })}
-              className="mt-0.5"
-            />
-            <Label htmlFor="lgpd" className="text-sm font-normal leading-relaxed text-muted-foreground">
-              Autorizo o contato da FBN para atendimento da minha solicitação e apresentação do
-              modelo de parceria FBN Brokers, conforme a legislação de proteção de dados.
-            </Label>
-          </div>
-          {errors.lgpd?.message && (
-            <p className="mt-2 text-sm text-destructive">{errors.lgpd.message}</p>
-          )}
-
-          <Button
-            type="submit"
-            size="lg"
-            disabled={status === "submitting"}
-            className="mt-8 h-12 w-full bg-primary text-primary-foreground hover:bg-primary-dark sm:w-auto"
-          >
-            {status === "submitting" ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Enviando...
-              </>
+        <div className="mt-12 relative min-h-[400px]">
+          <AnimatePresence mode="wait">
+            {status === "success" ? (
+              <motion.div
+                key="success-message"
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="flex flex-col items-center justify-center text-center p-8 sm:p-16 rounded-3xl border border-success/20 bg-success/5 shadow-xl"
+              >
+                <div className="mb-6 rounded-full bg-success/10 p-4">
+                  <CheckCircle2 className="h-12 w-12 text-success" />
+                </div>
+                <h3 className="mb-4 text-2xl font-bold text-foreground sm:text-3xl font-['Poppins']">
+                  Solicitação enviada com sucesso!
+                </h3>
+                <p className="max-w-md text-lg text-muted-foreground leading-relaxed">
+                  Em breve você receberá um contato da nossa equipe para orientações do próximo passo.
+                </p>
+                <Button
+                  variant="outline"
+                  className="mt-8"
+                  onClick={() => setStatus("idle")}
+                >
+                  Enviar outra solicitação
+                </Button>
+              </motion.div>
             ) : (
-              "Quero me tornar um broker"
+              <motion.form
+                key="broker-form"
+                id="formulario-broker"
+                name="formulario-broker"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.6 }}
+                noValidate
+                onSubmit={handleSubmit(onSubmit, onInvalid)}
+                className="rounded-3xl border border-border bg-card p-6 shadow-[0_30px_80px_-40px_rgba(30,71,143,0.35)] sm:p-10"
+              >
+                {status === "error" && (
+                  <div className="mb-6 flex items-start gap-3 rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive">
+                    <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" />
+                    <p className="text-sm font-medium">
+                      Revise os campos obrigatórios antes de enviar.
+                    </p>
+                  </div>
+                )}
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <Field label="Nome completo" error={errors.nome?.message}>
+                    <Input {...register("nome")} placeholder="Seu nome" />
+                  </Field>
+                  <Field label="Nome da empresa" error={errors.empresa?.message}>
+                    <Input {...register("empresa")} placeholder="Nome fantasia" />
+                  </Field>
+                  <Field label="Segmento de atuação" error={errors.segmento?.message}>
+                    <Input {...register("segmento")} placeholder="Ex.: Contabilidade, Imobiliária..." />
+                  </Field>
+                  <Field label="Cargo ou função" error={errors.cargo?.message}>
+                    <Input {...register("cargo")} placeholder="Seu cargo na empresa" />
+                  </Field>
+                  <Field label="Telefone ou WhatsApp" error={errors.telefone?.message}>
+                    <IMaskInput
+                      mask="(00) 00000-0000"
+                      unmask={false}
+                      placeholder="(00) 00000-0000"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      {...register("telefone")}
+                      onAccept={(value: string) => setValue("telefone", value, { shouldValidate: true })}
+                    />
+                  </Field>
+                  <Field label="E-mail" error={errors.email?.message}>
+                    <Input type="email" {...register("email")} placeholder="voce@empresa.com" />
+                  </Field>
+                  <Field label="CNPJ" error={errors.cnpj?.message}>
+                    <IMaskInput
+                      mask="00.000.000/0000-00"
+                      unmask={false}
+                      placeholder="00.000.000/0000-00"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      {...register("cnpj")}
+                      onAccept={(value: string) => setValue("cnpj", value, { shouldValidate: true })}
+                    />
+                  </Field>
+                  <Field label="Site da empresa" error={errors.site?.message}>
+                    <Input {...register("site")} placeholder="empresa.com.br" />
+                  </Field>
+                  <Field
+                    label="Tamanho aproximado da base de clientes"
+                    error={errors.base?.message}
+                    className="sm:col-span-2"
+                  >
+                    <Select value={baseValue} onValueChange={(v) => setValue("base", v, { shouldValidate: true })}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione uma opção" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {BASE_OPTIONS.map((o) => (
+                          <SelectItem key={o} value={o}>{o}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </Field>
+                  <Field
+                    label="Mensagem ou observações"
+                    error={errors.mensagem?.message}
+                    className="sm:col-span-2"
+                  >
+                    <Textarea
+                      {...register("mensagem")}
+                      rows={4}
+                      placeholder="Conte um pouco sobre sua empresa e o que espera da parceria"
+                    />
+                  </Field>
+                </div>
+
+                <div className="mt-6 flex items-start gap-3 rounded-xl border border-border bg-surface-muted p-4">
+                  <Checkbox
+                    id="lgpd"
+                    checked={!!lgpdValue}
+                    onCheckedChange={(c) => setValue("lgpd", (c === true) as true, { shouldValidate: true })}
+                    className="mt-0.5"
+                  />
+                  <Label htmlFor="lgpd" className="text-sm font-normal leading-relaxed text-muted-foreground">
+                    Autorizo o contato da FBN para atendimento da minha solicitação e apresentação do
+                    modelo de parceria FBN Brokers, conforme a legislação de proteção de dados.
+                  </Label>
+                </div>
+                {errors.lgpd?.message && (
+                  <p className="mt-2 text-sm text-destructive">{errors.lgpd.message}</p>
+                )}
+
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={status === "submitting"}
+                  className="mt-8 h-12 w-full bg-primary text-primary-foreground hover:bg-primary-dark sm:w-auto"
+                >
+                  {status === "submitting" ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-4 w-4" />
+                      Quero me tornar um broker
+                    </>
+                  )}
+                </Button>
+              </motion.form>
             )}
-          </Button>
-        </motion.form>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

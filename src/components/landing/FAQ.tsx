@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: "Posso solicitar seguro de moto e auto juntos?",
-    a: "Sim. Você pode pedir atendimento para moto ou auto, a equipe FBN cuida das duas frentes.",
+    a: "Sim. Você pode pedir atendimento para moto ou auto e, durante a conversa, a equipe FBN cuida das duas frentes.",
   },
   {
     q: "Preciso ser da comunidade Moto Viagens para falar com a FBN?",

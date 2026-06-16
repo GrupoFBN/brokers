@@ -13,22 +13,81 @@ import { FormularioBroker } from "@/components/brokers/FormularioBroker";
 import { FAQ } from "@/components/brokers/FAQ";
 import { Encerramento } from "@/components/brokers/Encerramento";
 
-const TITLE = "FBN Brokers — Relevância para sua empresa, consultoria para seus clientes";
+const TITLE = "FBN Brokers | Programa de Parceria em Seguros e Benefícios";
 const DESC =
-  "Programa de parceria da FBN para empresas que desejam ampliar a relevância junto aos seus clientes oferecendo acesso à consultoria em seguros, benefícios e proteção.";
+  "Aumente a relevância da sua empresa com o FBN Brokers. Ofereça consultoria especializada em seguros e benefícios para seus clientes com a solidez do Grupo FBN.";
+const KEYWORDS = "corretora de seguros, programa de corretores, parceria comercial, benefícios corporativos, consultoria de seguros, fbn brokers, grupo fbn";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
+      { name: "keywords", content: KEYWORDS },
+      
+      // GEO Tags
+      { name: "geo.region", content: "BR" },
+      { name: "geo.placename", content: "Brasil" },
+      { name: "geo.position", content: "-23.55052;-46.633309" },
+      { name: "ICBM", content: "-23.55052, -46.633309" },
+
+      // Open Graph / Facebook
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://fbn.com.br/brokers" },
+      { property: "og:site_name", content: "FBN Brokers" },
+      { property: "og:locale", content: "pt_BR" },
+      
+      // Twitter
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESC },
+      { name: "twitter:site", content: "@GrupoFBN" },
     ],
+    links: [
+      { rel: "canonical", href: "https://fbn.com.br/brokers" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "FBN Brokers",
+          "description": DESC,
+          "provider": {
+            "@type": "Organization",
+            "name": "Grupo FBN",
+            "url": "https://fbn.com.br"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Brazil"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Parcerias FBN",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Consultoria em Seguros"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Benefícios Corporativos"
+                }
+              }
+            ]
+          }
+        })
+      }
+    ]
   }),
   component: Index,
 });
@@ -37,7 +96,7 @@ function Index() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
         <SobreBrokers />
         <PropostaValor />
