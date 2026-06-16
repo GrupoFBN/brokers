@@ -1,6 +1,6 @@
 import { Plus, Users, Building2, Zap, MessageCircle, ShieldCheck } from "lucide-react";
-const aryzLogo = { url: "https://cdn.lovable.dev/assets-v1/e06333e7-3d84-4745-b674-fbad323934f3/aryz-logo.png" };
-const fbnLogo = { url: "https://cdn.lovable.dev/assets-v1/e481f4ab-bc17-46f7-a923-ed2d28da6432/fbn-logo.png" };
+import aryzLogo from "@/assets/aryz/aryz-logo.png";
+import fbnLogo from "@/assets/aryz/fbn-logo.svg";
 
 const DIFERENCIAIS = [
   { icon: Users, title: "Atendimento especializado", text: "Time consultivo dedicado ao seu setor." },
@@ -38,13 +38,13 @@ export function Parceria() {
             <div className="bg-gradient-soft rounded-3xl p-8 lg:p-12 border border-border shadow-card">
               <div className="flex items-center justify-center gap-6 lg:gap-10">
                 <div className="bg-background rounded-2xl p-6 shadow-card flex items-center justify-center min-h-[120px] flex-1">
-                  <img src={aryzLogo.url} alt="ARYZ" className="h-14 lg:h-16 w-auto object-contain" />
+                  <img src={aryzLogo} alt="ARYZ" className="h-14 lg:h-16 w-auto object-contain" />
                 </div>
                 <div className="size-12 rounded-full bg-gradient-brand flex items-center justify-center text-primary-foreground shadow-soft shrink-0">
                   <Plus className="size-6" />
                 </div>
                 <div className="bg-background rounded-2xl p-6 shadow-card flex items-center justify-center min-h-[120px] flex-1">
-                  <img src={fbnLogo.url} alt="Grupo FBN" className="h-14 lg:h-20 w-auto object-contain" />
+                  <img src={fbnLogo} alt="Grupo FBN" className="h-14 lg:h-20 w-auto object-contain" />
                 </div>
               </div>
               <div className="mt-6 text-center text-sm text-muted-foreground italic">

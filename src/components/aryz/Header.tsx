@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-const aryzLogo = { url: "https://cdn.lovable.dev/assets-v1/ae19720b-deae-4b62-ba8e-2c4299c616b1/aryz-logo-transparent.png" };
-const fbnLogo = { url: "https://cdn.lovable.dev/assets-v1/e481f4ab-bc17-46f7-a923-ed2d28da6432/fbn-logo.png" };
+import aryzLogo from "@/assets/aryz/aryz-logo.png";
+import fbnLogo from "@/assets/aryz/fbn-logo.svg";
 
 const NAV = [
   { href: "#case", label: "Case" },
@@ -19,9 +19,9 @@ export function Header() {
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/85 border-b border-border/60">
       <div className="mx-auto max-w-7xl px-5 lg:px-8 h-16 flex items-center justify-between gap-4">
         <a href="#top" className="flex items-center gap-3 sm:gap-4 shrink-0">
-          <img src={aryzLogo.url} alt="ARYZ" className="h-7 sm:h-8 w-auto" />
+          <img src={aryzLogo} alt="ARYZ" className="h-7 sm:h-8 w-auto" />
           <span className="h-6 w-px bg-border" />
-          <img src={fbnLogo.url} alt="Grupo FBN" className="h-7 sm:h-8 w-auto" />
+          <img src={fbnLogo} alt="Grupo FBN" className="h-7 sm:h-8 w-auto" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">
