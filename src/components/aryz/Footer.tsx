@@ -1,4 +1,4 @@
-import aryzLogo from "@/assets/aryz/aryz-logo.png";
+import aryzLogo from "@/assets/aryz/aryz-logo-transparent.png";
 import fbnLogo from "@/assets/aryz/fbn-logo.svg";
 
 export function Footer() {
