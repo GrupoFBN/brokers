@@ -34,7 +34,7 @@ export function Header() {
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:h-28 sm:gap-4 sm:px-6 lg:px-8">
         <a href="#top" className="flex items-center gap-2 min-w-0">
-          <img src={logo} alt="Grupo FBN" className="h-14 w-auto shrink-0 sm:h-20" />
+          <img src={logo} alt="Grupo FBN" className="h-7 w-auto shrink-0 sm:h-10" />
           <span className="hidden text-lg font-bold tracking-tight text-primary sm:inline lg:text-2xl font-['Poppins']">Brokers</span>
         </a>
 

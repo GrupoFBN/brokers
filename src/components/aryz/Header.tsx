@@ -21,7 +21,7 @@ export function Header() {
         <a href="#top" className="flex items-center gap-3 sm:gap-4 shrink-0">
           <img src={aryzLogo} alt="ARYZ" className="h-11 sm:h-14 w-auto" />
           <span className="h-10 w-px bg-border" />
-          <img src={fbnLogo} alt="Grupo FBN" className="h-11 sm:h-14 w-auto" />
+          <img src={fbnLogo} alt="Grupo FBN" className="h-5 sm:h-7 w-auto" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">
