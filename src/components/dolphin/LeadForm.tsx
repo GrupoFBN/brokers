@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useId } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -214,13 +214,15 @@ function Field({
   children: React.ReactNode;
   className?: string;
 }) {
+  const id = useId();
+
   return (
     <div className={className}>
-      <Label className="mb-1.5 block text-sm font-medium text-fbn-blue-deep">
+      <Label htmlFor={id} className="mb-1.5 block text-sm font-medium text-fbn-blue-deep">
         {label}
         {required && <span className="ml-1 text-fbn-blue">*</span>}
       </Label>
-      {children}
+      {React.isValidElement(children) ? React.cloneElement(children as React.ReactElement<any>, { id }) : children}
       {error && <p className="mt-1.5 text-xs text-destructive">{error}</p>}
     </div>
   );

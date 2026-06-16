@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useId } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -177,12 +177,14 @@ function Field({
   className?: string;
   children: React.ReactNode;
 }) {
+  const id = useId();
+
   return (
     <div className={className}>
-      <Label className="mb-2 block text-sm font-medium text-foreground">
+      <Label htmlFor={id} className="mb-2 block text-sm font-medium text-foreground">
         {label} {required && <span className="text-primary">*</span>}
       </Label>
-      {children}
+      {React.isValidElement(children) ? React.cloneElement(children as React.ReactElement<any>, { id }) : children}
       {error && <p className="mt-1.5 text-xs text-destructive">{error}</p>}
     </div>
   );
