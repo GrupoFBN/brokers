@@ -121,6 +121,10 @@
   --volt: oklch(0.78 0.18 158);
   --volt-soft: oklch(0.95 0.07 158);
 
+  /* MotoViagens/Landing gradients */
+  --gradient-fbn: linear-gradient(135deg, oklch(0.42 0.16 258) 0%, oklch(0.55 0.18 258) 100%);
+  --gradient-fbn-soft: linear-gradient(180deg, oklch(0.965 0.012 245) 0%, oklch(0.99 0.006 245) 100%);
+
   /* ARYZ colors */
   --brand-blue: oklch(0.48 0.14 264);    /* #2C5AA8 FBN */
   --brand-purple: oklch(0.55 0.16 305);  /* #7B4FB8 ARYZ */
@@ -274,8 +278,20 @@
 @utility bg-gradient-soft {
   background-image: var(--gradient-soft);
 }
+@utility bg-gradient-fbn {
+  background-image: var(--gradient-fbn);
+}
+@utility bg-gradient-fbn-soft {
+  background-image: var(--gradient-fbn-soft);
+}
 @utility text-gradient-brand {
   background-image: var(--gradient-brand);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+@utility text-gradient-fbn {
+  background-image: var(--gradient-fbn);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
