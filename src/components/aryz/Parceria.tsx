@@ -1,6 +1,6 @@
 import { Plus, Users, Building2, Zap, MessageCircle, ShieldCheck } from "lucide-react";
-import aryzLogo from "@/assets/aryz/aryz-logo.png";
-import fbnLogo from "@/assets/aryz/fbn-logo.png";
+import aryzLogo from "@/assets/aryz/aryz-logo.png.asset.json";
+import fbnLogo from "@/assets/aryz/fbn-logo.png.asset.json";
 
 const DIFERENCIAIS = [
   { icon: Users, title: "Atendimento especializado", text: "Time consultivo dedicado ao seu setor." },
@@ -38,13 +38,13 @@ export function Parceria() {
             <div className="bg-gradient-soft rounded-3xl p-8 lg:p-12 border border-border shadow-card">
               <div className="flex items-center justify-center gap-6 lg:gap-10">
                 <div className="bg-background rounded-2xl p-6 shadow-card flex items-center justify-center min-h-[120px] flex-1">
-                  <img src={aryzLogo} alt="ARYZ" className="h-14 lg:h-16 w-auto object-contain" />
+                  <img src={aryzLogo.url} alt="ARYZ" className="h-14 lg:h-16 w-auto object-contain" />
                 </div>
                 <div className="size-12 rounded-full bg-gradient-brand flex items-center justify-center text-primary-foreground shadow-soft shrink-0">
                   <Plus className="size-6" />
                 </div>
                 <div className="bg-background rounded-2xl p-6 shadow-card flex items-center justify-center min-h-[120px] flex-1">
-                  <img src={fbnLogo} alt="Grupo FBN" className="h-14 lg:h-20 w-auto object-contain" />
+                  <img src={fbnLogo.url} alt="Grupo FBN" className="h-14 lg:h-20 w-auto object-contain" />
                 </div>
               </div>
               <div className="mt-6 text-center text-sm text-muted-foreground italic">
