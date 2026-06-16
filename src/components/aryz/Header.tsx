@@ -17,11 +17,11 @@ export function Header() {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/85 border-b border-border/60">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8 h-20 flex items-center justify-between gap-4">
         <a href="#top" className="flex items-center gap-3 sm:gap-4 shrink-0">
-          <img src={aryzLogo} alt="ARYZ" className="h-9 sm:h-11 w-auto" />
-          <span className="h-8 w-px bg-border" />
-          <img src={fbnLogo} alt="Grupo FBN" className="h-9 sm:h-11 w-auto" />
+          <img src={aryzLogo} alt="ARYZ" className="h-11 sm:h-14 w-auto" />
+          <span className="h-10 w-px bg-border" />
+          <img src={fbnLogo} alt="Grupo FBN" className="h-11 sm:h-14 w-auto" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">
