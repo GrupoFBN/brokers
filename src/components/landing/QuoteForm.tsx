@@ -110,7 +110,7 @@ export function QuoteForm({ preselected }: { preselected?: InsuranceType }) {
                 </Button>
               </div>
             ) : (
-              <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <form id="formulario-motoviagens" name="formulario-motoviagens" onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <Field label="Nome completo" error={form.formState.errors.nome?.message} required className="sm:col-span-2">
                   <Input placeholder="Seu nome" {...form.register("nome")} />
                 </Field>

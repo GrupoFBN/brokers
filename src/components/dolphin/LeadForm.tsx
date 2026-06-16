@@ -107,6 +107,8 @@ export function LeadForm({ product, onProductChange }: Props) {
 
   return (
     <form
+      id="formulario-dolphin-connect"
+      name="formulario-dolphin-connect"
       onSubmit={handleSubmit}
       className="rounded-3xl border border-border bg-card p-6 shadow-xl sm:p-10"
       noValidate
