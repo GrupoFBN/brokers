@@ -120,6 +120,15 @@
   --fbn-gray: oklch(0.62 0.01 264);
   --volt: oklch(0.78 0.18 158);
   --volt-soft: oklch(0.95 0.07 158);
+
+  /* ARYZ colors */
+  --brand-blue: oklch(0.48 0.14 264);    /* #2C5AA8 FBN */
+  --brand-purple: oklch(0.55 0.16 305);  /* #7B4FB8 ARYZ */
+  --aryz-surface: oklch(0.975 0.005 260);
+  --gradient-brand: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-purple) 100%);
+  --gradient-soft: linear-gradient(135deg, oklch(0.97 0.02 264) 0%, oklch(0.97 0.03 305) 100%);
+  --shadow-soft: 0 10px 30px -12px color-mix(in oklab, var(--brand-blue) 25%, transparent);
+  --shadow-card: 0 4px 24px -8px oklch(0.21 0.03 260 / 0.08);
 }
 
 .dark {
@@ -256,5 +265,25 @@
 }
 @utility animate-scanline {
   animation: scanline 6s linear infinite;
+}
+
+/* ===== ARYZ utilities ===== */
+@utility bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+@utility bg-gradient-soft {
+  background-image: var(--gradient-soft);
+}
+@utility text-gradient-brand {
+  background-image: var(--gradient-brand);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
 }
 
