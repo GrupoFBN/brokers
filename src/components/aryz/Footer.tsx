@@ -1,5 +1,5 @@
-import aryzLogo from "@/assets/aryz/aryz-logo-transparent.png.asset.json";
-import fbnLogo from "@/assets/aryz/fbn-logo.png.asset.json";
+import aryzLogo from "@/assets/aryz/aryz-logo-transparent.png";
+import fbnLogo from "@/assets/aryz/fbn-logo.png";
 
 export function Footer() {
   return (
