@@ -1,6 +1,6 @@
 import { Plus, Users, Building2, Zap, MessageCircle, ShieldCheck } from "lucide-react";
-import aryzLogo from "@/assets/aryz/aryz-logo.png.asset.json";
-import fbnLogo from "@/assets/aryz/fbn-logo.png.asset.json";
+const aryzLogo = { url: "https://cdn.lovable.dev/assets-v1/e06333e7-3d84-4745-b674-fbad323934f3/aryz-logo.png" };
+const fbnLogo = { url: "https://cdn.lovable.dev/assets-v1/e481f4ab-bc17-46f7-a923-ed2d28da6432/fbn-logo.png" };
 
 const DIFERENCIAIS = [
   { icon: Users, title: "Atendimento especializado", text: "Time consultivo dedicado ao seu setor." },

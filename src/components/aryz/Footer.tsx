@@ -1,5 +1,5 @@
-import aryzLogo from "@/assets/aryz/aryz-logo-transparent.png.asset.json";
-import fbnLogo from "@/assets/aryz/fbn-logo.png.asset.json";
+const aryzLogo = { url: "https://cdn.lovable.dev/assets-v1/ae19720b-deae-4b62-ba8e-2c4299c616b1/aryz-logo-transparent.png" };
+const fbnLogo = { url: "https://cdn.lovable.dev/assets-v1/e481f4ab-bc17-46f7-a923-ed2d28da6432/fbn-logo.png" };
 
 export function Footer() {
   return (
