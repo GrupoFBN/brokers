@@ -56,6 +56,11 @@
   --color-fbn-gray: var(--fbn-gray);
   --color-volt: var(--volt);
   --color-volt-soft: var(--volt-soft);
+
+  /* ARYZ tokens (only meaningful inside .aryz-theme) */
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-purple: var(--brand-purple);
+  --color-aryz-surface: var(--aryz-surface);
 }
 
 :root {

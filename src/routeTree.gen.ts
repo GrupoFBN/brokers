@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MotoviagensRouteImport } from './routes/motoviagens'
 import { Route as DolphinDicasRouteImport } from './routes/dolphin-dicas'
+import { Route as AryzRouteImport } from './routes/aryz'
 import { Route as IndexRouteImport } from './routes/index'
 
 const MotoviagensRoute = MotoviagensRouteImport.update({
@@ -23,6 +24,11 @@ const DolphinDicasRoute = DolphinDicasRouteImport.update({
   path: '/dolphin-dicas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AryzRoute = AryzRouteImport.update({
+  id: '/aryz',
+  path: '/aryz',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +37,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aryz': typeof AryzRoute
   '/dolphin-dicas': typeof DolphinDicasRoute
   '/motoviagens': typeof MotoviagensRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aryz': typeof AryzRoute
   '/dolphin-dicas': typeof DolphinDicasRoute
   '/motoviagens': typeof MotoviagensRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aryz': typeof AryzRoute
   '/dolphin-dicas': typeof DolphinDicasRoute
   '/motoviagens': typeof MotoviagensRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dolphin-dicas' | '/motoviagens'
+  fullPaths: '/' | '/aryz' | '/dolphin-dicas' | '/motoviagens'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dolphin-dicas' | '/motoviagens'
-  id: '__root__' | '/' | '/dolphin-dicas' | '/motoviagens'
+  to: '/' | '/aryz' | '/dolphin-dicas' | '/motoviagens'
+  id: '__root__' | '/' | '/aryz' | '/dolphin-dicas' | '/motoviagens'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AryzRoute: typeof AryzRoute
   DolphinDicasRoute: typeof DolphinDicasRoute
   MotoviagensRoute: typeof MotoviagensRoute
 }
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DolphinDicasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aryz': {
+      id: '/aryz'
+      path: '/aryz'
+      fullPath: '/aryz'
+      preLoaderRoute: typeof AryzRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AryzRoute: AryzRoute,
   DolphinDicasRoute: DolphinDicasRoute,
   MotoviagensRoute: MotoviagensRoute,
 }
