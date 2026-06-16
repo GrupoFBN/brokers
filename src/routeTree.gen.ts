@@ -9,13 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as MotoRoadProtectRouteImport } from './routes/moto-road-protect'
+import { Route as MotoviagensRouteImport } from './routes/motoviagens'
 import { Route as DolphinDicasRouteImport } from './routes/dolphin-dicas'
 import { Route as IndexRouteImport } from './routes/index'
 
-const MotoRoadProtectRoute = MotoRoadProtectRouteImport.update({
-  id: '/moto-road-protect',
-  path: '/moto-road-protect',
+const MotoviagensRoute = MotoviagensRouteImport.update({
+  id: '/motoviagens',
+  path: '/motoviagens',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DolphinDicasRoute = DolphinDicasRouteImport.update({
@@ -32,40 +32,40 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dolphin-dicas': typeof DolphinDicasRoute
-  '/moto-road-protect': typeof MotoRoadProtectRoute
+  '/motoviagens': typeof MotoviagensRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dolphin-dicas': typeof DolphinDicasRoute
-  '/moto-road-protect': typeof MotoRoadProtectRoute
+  '/motoviagens': typeof MotoviagensRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dolphin-dicas': typeof DolphinDicasRoute
-  '/moto-road-protect': typeof MotoRoadProtectRoute
+  '/motoviagens': typeof MotoviagensRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dolphin-dicas' | '/moto-road-protect'
+  fullPaths: '/' | '/dolphin-dicas' | '/motoviagens'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dolphin-dicas' | '/moto-road-protect'
-  id: '__root__' | '/' | '/dolphin-dicas' | '/moto-road-protect'
+  to: '/' | '/dolphin-dicas' | '/motoviagens'
+  id: '__root__' | '/' | '/dolphin-dicas' | '/motoviagens'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DolphinDicasRoute: typeof DolphinDicasRoute
-  MotoRoadProtectRoute: typeof MotoRoadProtectRoute
+  MotoviagensRoute: typeof MotoviagensRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/moto-road-protect': {
-      id: '/moto-road-protect'
-      path: '/moto-road-protect'
-      fullPath: '/moto-road-protect'
-      preLoaderRoute: typeof MotoRoadProtectRouteImport
+    '/motoviagens': {
+      id: '/motoviagens'
+      path: '/motoviagens'
+      fullPath: '/motoviagens'
+      preLoaderRoute: typeof MotoviagensRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dolphin-dicas': {
@@ -88,7 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DolphinDicasRoute: DolphinDicasRoute,
-  MotoRoadProtectRoute: MotoRoadProtectRoute,
+  MotoviagensRoute: MotoviagensRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

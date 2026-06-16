@@ -12,7 +12,7 @@ import { FAQ } from "@/components/landing/FAQ";
 import { Footer } from "@/components/landing/Footer";
 import heroImg from "@/assets/hero-rider.jpg";
 
-export const Route = createFileRoute("/moto-road-protect")({
+export const Route = createFileRoute("/motoviagens")({
   head: () => ({
     meta: [
       { title: "FBN e Moto Viagens · Seguro de Moto e Auto" },
