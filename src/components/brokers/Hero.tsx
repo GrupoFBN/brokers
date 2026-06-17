@@ -8,8 +8,8 @@ const floats = [
     icon: Handshake,
     label: "Parcerias",
     sub: "B2B consultivo",
-    posMobile: "left-2 top-3",
-    posDesktop: "md:left-[-6%] md:top-[42%]",
+    posMobile: "left-2 top-8",
+    posDesktop: "md:left-[-6%] md:top-[55%]",
     delay: 0.5,
     showMobile: true,
   },
@@ -153,7 +153,7 @@ export function Hero() {
         >
           {/* Decorative tech ring */}
           <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-primary/25 via-accent-cyan/20 to-transparent blur-2xl sm:-inset-6" />
-          <div className="pointer-events-none absolute -inset-1 -z-10 rounded-[2rem] bg-[conic-gradient(from_0deg,var(--color-primary),var(--color-accent-cyan),var(--color-primary-glow),var(--color-primary))] opacity-70 blur-[2px] animate-spin-slow" />
+
 
           <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.85rem] border border-border/60 bg-surface shadow-[0_40px_100px_-30px_rgba(30,71,143,0.55)]">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
@@ -164,11 +164,7 @@ export function Hero() {
               fetchPriority="high"
               className="h-full w-full object-cover"
             />
-            {/* Top-right tech badge */}
-            <div className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full border border-white/40 bg-background/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur sm:right-4 sm:top-4 sm:px-3">
-              <Zap className="h-3 w-3 text-accent-cyan" />
-              Live
-            </div>
+
             {/* Bottom scanline */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/40 to-transparent" />
 

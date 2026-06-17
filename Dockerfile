@@ -1,5 +1,5 @@
 # Usa a imagem oficial do Node.js baseada no Alpine Linux (mais leve)
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 # Define o diretório de trabalho dentro do container
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Agora vamos para a imagem final (apenas o necessário para rodar o app)
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 
 WORKDIR /app
 
