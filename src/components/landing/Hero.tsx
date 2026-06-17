@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck, MapPin, Award, Calendar } from "lucide-react";
 import heroImg from "@/assets/hero-rider.jpg";
-import mvLogo from "@/assets/logo-motoviagens.png.asset.json";
 
 const trustStats = [
   { icon: Calendar, label: "Desde 1996" },
@@ -102,7 +101,7 @@ export function Hero({ onCta }: { onCta: () => void }) {
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent p-5">
               <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md">
                 <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-foreground">
-                  <img src={mvLogo.url} alt="Moto Viagens" className="h-3.5 w-auto" />
+                  <span className="font-logo font-bold uppercase tracking-[0.15em] text-foreground"><span className="text-[#F46A00]">M</span><span className="text-foreground">O</span><span className="text-foreground">T</span><span className="text-foreground">O</span><span className="text-[#F46A00]">V</span><span className="text-foreground">I</span><span className="text-foreground">A</span><span className="text-foreground">G</span><span className="text-foreground">E</span><span className="text-foreground">N</span><span className="text-foreground">S</span></span>
                 </span>
                 <p className="mt-3 font-display text-base font-semibold text-white sm:text-lg">
                   Um canal FBN para a comunidade Moto Viagens.

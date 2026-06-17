@@ -151,8 +151,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
           className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-lg"
         >
-          {/* Decorative tech ring */}
-          <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-primary/25 via-accent-cyan/20 to-transparent blur-2xl sm:-inset-6" />
+
 
 
           <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.85rem] border border-border/60 bg-surface shadow-[0_40px_100px_-30px_rgba(30,71,143,0.55)]">
