@@ -21,11 +21,18 @@ FROM node:22-alpine AS runner
 
 WORKDIR /app
 
+# Cria um usuário não-root para rodar a aplicação (segurança)
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 appuser
+
 # Copia o build completo (client + server) gerado pelo Nitro
-COPY --from=builder /app/.output ./.output
+COPY --from=builder --chown=appuser:nodejs /app/.output ./.output
 
 # Porta padrão do Nitro
 EXPOSE 3000
+
+# Roda como usuário não-root
+USER appuser
 
 # Roda o servidor Nitro diretamente (sem restrição de hosts)
 ENV HOST=0.0.0.0
