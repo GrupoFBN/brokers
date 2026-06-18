@@ -41,7 +41,7 @@ export function SolutionsSection({ onPick }: Props) {
             icon={<ShieldCheck className="size-6" />}
             tag="Proteção"
             name="Seguro Auto"
-            description="Proteção para quem já tem um Dolphin Mini, outro carro elétrico ou veículo de uso diário e quer contar com orientação para escolher uma opção compatível com seu perfil."
+            description="Proteção para quem já tem um carro elétrico ou veículo de uso diário e quer contar com orientação para escolher uma opção compatível com seu perfil."
             benefits={SEGURO_BENEFITS}
             cta="Tenho interesse em Seguro Auto"
             onClick={() => onPick("Seguro Auto")}
@@ -51,7 +51,7 @@ export function SolutionsSection({ onPick }: Props) {
             icon={<PiggyBank className="size-6" />}
             tag="Planejamento"
             name="Consórcio"
-            description="Uma alternativa para quem deseja planejar a compra do próximo carro, trocar de veículo ou entrar no universo dos elétricos com organização e acompanhamento consultivo."
+            description="Uma alternativa para quem deseja planejar a compra do carro novo, trocar de veículo ou entrar no universo dos elétricos com organização e acompanhamento consultivo."
             benefits={CONSORCIO_BENEFITS}
             cta="Tenho interesse em Consórcio"
             onClick={() => onPick("Consórcio")}

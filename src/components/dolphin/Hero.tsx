@@ -40,7 +40,7 @@ export function Hero(_props: Props) {
 
           <h1 className="text-3xl font-extrabold leading-[1.15] text-fbn-blue-deep sm:text-5xl sm:leading-tight lg:text-[3.4rem]">
             Seguro e consórcio para quem vive o universo{" "}
-            <span className="text-fbn-blue">Dolphin Mini</span>
+            <span className="text-fbn-blue">EV</span>
           </h1>
 
           <p className="mt-4 max-w-xl text-sm text-muted-foreground sm:mt-5 sm:text-lg">
@@ -57,14 +57,6 @@ export function Hero(_props: Props) {
               className="w-full bg-fbn-blue text-white shadow-lg shadow-fbn-blue/20 hover:bg-fbn-blue-deep sm:w-auto"
             >
               <a href="#contato">Quero solicitar contato</a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="w-full border-fbn-blue/30 text-fbn-blue-deep hover:bg-fbn-blue-soft sm:w-auto"
-            >
-              <a href="#solucoes">Conhecer soluções</a>
             </Button>
           </div>
 

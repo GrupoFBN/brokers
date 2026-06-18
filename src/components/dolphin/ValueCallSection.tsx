@@ -16,7 +16,7 @@ export function ValueCallSection() {
                 Pensado para a sua jornada elétrica
               </span>
               <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">
-                Mais segurança para cuidar do seu Dolphin Mini ou planejar o próximo carro
+                Mais segurança para cuidar do seu carro elétrico ou planejar o carro novo
               </h2>
               <p className="mt-4 max-w-2xl text-white/80">
                 Quem acompanha dicas sobre carro elétrico sabe que cada detalhe

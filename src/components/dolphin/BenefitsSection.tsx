@@ -31,7 +31,7 @@ export function BenefitsSection() {
           <p className="mt-4 text-muted-foreground">
             A parceria entre FBN e Dolphin Mini Dicas foi criada para oferecer
             uma experiência mais simples, segura e orientada para quem busca
-            proteger seu veículo ou planejar a compra do próximo carro.
+            proteger seu veículo ou planejar a compra do carro novo.
           </p>
         </div>
 
