@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instala todas as dependências (inclusive as de desenvolvimento necessárias para o build)
-RUN npm ci
+RUN npm install
 
 # Copia todo o código fonte para dentro do container
 COPY . .
