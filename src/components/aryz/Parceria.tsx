@@ -12,20 +12,20 @@ const DIFERENCIAIS = [
 
 export function Parceria() {
   return (
-    <section id="parceria" className="py-20 lg:py-28">
+    <section id="parceria" className="py-12 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
             <div className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">
               Quem somos
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-foreground">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-foreground font-display">
               Uma parceria para ampliar o cuidado com{" "}
               <span className="text-gradient-brand">empresas e colaboradores</span>
             </h2>
             <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
               A <strong className="text-foreground">ARYZ</strong> atua com soluções em saúde e segurança
-              ocupacional, ajudando empresas a manterem ambientes mais seguros e preparados.
+              ocupacional, helping empresas a manterem ambientes mais seguros e preparados.
             </p>
             <p className="mt-3 text-lg text-muted-foreground leading-relaxed">
               Por meio da parceria com a <strong className="text-foreground">FBN</strong>, conectamos
@@ -35,16 +35,16 @@ export function Parceria() {
           </div>
 
           <div className="relative">
-            <div className="bg-gradient-soft rounded-3xl p-8 lg:p-12 border border-border shadow-card">
-              <div className="flex items-center justify-center gap-6 lg:gap-10">
-                <div className="bg-background rounded-2xl p-6 shadow-card flex items-center justify-center min-h-[60px] flex-1">
-                  <img src={aryzLogo} alt="ARYZ" className="h-7 lg:h-8 w-auto object-contain" />
+            <div className="bg-gradient-soft rounded-3xl p-5 sm:p-8 lg:p-12 border border-border shadow-card">
+              <div className="flex items-center justify-center gap-4 sm:gap-6 lg:gap-10">
+                <div className="bg-background rounded-2xl p-4 sm:p-6 shadow-card flex items-center justify-center min-h-[50px] sm:min-h-[60px] flex-1">
+                  <img src={aryzLogo} alt="ARYZ" className="h-6 sm:h-7 lg:h-8 w-auto object-contain" />
                 </div>
-                <div className="size-12 rounded-full bg-gradient-brand flex items-center justify-center text-primary-foreground shadow-soft shrink-0">
-                  <Plus className="size-6" />
+                <div className="size-10 sm:size-12 rounded-full bg-gradient-brand flex items-center justify-center text-primary-foreground shadow-soft shrink-0">
+                  <Plus className="size-5 sm:size-6" />
                 </div>
-                <div className="bg-background rounded-2xl p-6 shadow-card flex items-center justify-center min-h-[60px] flex-1">
-                  <img src={fbnLogo} alt="Grupo FBN" className="h-7 lg:h-10 w-auto object-contain" />
+                <div className="bg-background rounded-2xl p-4 sm:p-6 shadow-card flex items-center justify-center min-h-[50px] sm:min-h-[60px] flex-1">
+                  <img src={fbnLogo} alt="Grupo FBN" className="h-6 sm:h-7 lg:h-10 w-auto object-contain" />
                 </div>
               </div>
               <div className="mt-6 text-center text-sm text-muted-foreground italic">

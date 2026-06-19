@@ -4,8 +4,8 @@ const PASSOS = [
   {
     n: "01",
     icon: FileText,
-    title: "Solicitação ou indicação",
-    text: "A empresa ou a equipe ARYZ registra as informações principais.",
+    title: "Análise ou Estudo Personalizado",
+    text: "Traga seu contrato atual para uma análise comparativa ou solicite um estudo personalizado do zero para a sua empresa.",
   },
   {
     n: "02",
@@ -23,13 +23,13 @@ const PASSOS = [
 
 export function ComoFunciona() {
   return (
-    <section id="como-funciona" className="py-20 lg:py-28">
+    <section id="como-funciona" className="py-12 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="max-w-3xl">
           <div className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">
             Como funciona
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-foreground">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-foreground font-display">
             Em <span className="text-gradient-brand">3 passos</span>, conectamos sua empresa às melhores soluções
           </h2>
         </div>

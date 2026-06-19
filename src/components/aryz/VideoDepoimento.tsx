@@ -23,13 +23,13 @@ export function VideoDepoimento() {
   const embedUrl = youtubeEmbed(CONFIG.videoUrl);
 
   return (
-    <section id="case" className="py-20 lg:py-28 bg-aryz-surface">
+    <section id="case" className="py-12 sm:py-20 lg:py-28 bg-aryz-surface">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="max-w-3xl">
           <div className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">
             Depoimento
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight font-display">
             Victor Carvalho, CEO da Aryz, conta como foi a{" "}
             <span className="text-gradient-brand">experiência com a FBN</span>
           </h2>

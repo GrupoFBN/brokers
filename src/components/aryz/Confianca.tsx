@@ -10,10 +10,10 @@ const DESTAQUES = [
 
 export function Confianca() {
   return (
-    <section className="py-20 lg:py-28 bg-aryz-surface">
+    <section className="py-12 sm:py-20 lg:py-28 bg-aryz-surface">
       <div className="mx-auto max-w-5xl px-5 lg:px-8 text-center">
         <div className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">Confiança</div>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-foreground">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-foreground font-display">
           Por que contar com a <span className="text-gradient-brand"> FBN</span>?
         </h2>
         <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
@@ -22,11 +22,11 @@ export function Confianca() {
           proteção, retenção e valorização dos colaboradores.
         </p>
 
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="mt-12 flex flex-wrap justify-center gap-4">
           {DESTAQUES.map((d) => (
             <div
               key={d.label}
-              className="bg-background border border-border rounded-2xl p-5 flex flex-col items-center gap-3 shadow-card"
+              className="w-[calc(50%-8px)] sm:w-[calc(33.33%-12px)] lg:w-[calc(20%-13px)] bg-background border border-border rounded-2xl p-5 flex flex-col items-center gap-3 shadow-card text-center min-w-[140px]"
             >
               <div className="size-12 rounded-full bg-gradient-soft flex items-center justify-center">
                 <d.icon className="size-5 text-accent-foreground" />

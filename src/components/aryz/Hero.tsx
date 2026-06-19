@@ -34,17 +34,6 @@ export function Hero() {
               size="lg"
               className="bg-gradient-brand hover:opacity-90 shadow-soft h-12 px-6 text-base"
             >
-              <a href="#case">
-                <PlayCircle className="size-5" />
-                Assistir depoimento
-              </a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="h-12 px-6 text-base border-2"
-            >
               <a href="#contato">
                 Solicitar contato
                 <ArrowRight className="size-4" />

@@ -8,6 +8,7 @@ import { ComoFunciona } from "@/components/aryz/ComoFunciona";
 import { Confianca } from "@/components/aryz/Confianca";
 import { Contato } from "@/components/aryz/Contato";
 import { Footer } from "@/components/aryz/Footer";
+import { Toaster } from "@/components/ui/sonner";
 import heroImg from "@/assets/aryz/hero-team.jpg";
 
 export const Route = createFileRoute("/aryz")({
@@ -49,6 +50,7 @@ function AryzLanding() {
         <Contato />
       </main>
       <Footer />
+      <Toaster richColors position="top-center" />
     </div>
   );
 }
